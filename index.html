@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>북콘서트 참석 신청 | 샌드위치 사회복지사 생존기술</title>
 <meta property="og:title" content="샌드위치 사회복지사 생존기술 — 북콘서트 참석 신청">
-<meta property="og:description" content="2026.7.11(토) 오전 11시 · 서울특별시사회복지사협회 304호 다락실 · 선착순 30명">
+<meta property="og:description" content="2026.7.11(토) 오전 11시 · 서울특별시사회복지사협회 304호 다락실 · 총 40석">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Jua&family=Gaegu:wght@400;700&family=Gowun+Dodum&family=Noto+Sans+KR:wght@500;700;900&display=swap" rel="stylesheet">
@@ -209,12 +209,12 @@
       <div class="info-row"><div class="info-label">일 시</div><div class="info-val"><b>2026년 7월 11일(토)</b> 오전 11시</div></div>
       <div class="info-row"><div class="info-label">책판매</div><div class="info-val">오전 10시부터</div></div>
       <div class="info-row"><div class="info-label">장 소</div><div class="info-val">서울특별시사회복지사협회 304호 다락실</div></div>
-      <div class="info-row"><div class="info-label">대 상</div><div class="info-val">선착순 <b>30명</b></div></div>
-      <div class="info-row"><div class="info-label">특 전</div><div class="info-val">참석자 30명 대상 <b>샌드위치 제공 🥪</b></div></div>
+      <div class="info-row"><div class="info-label">대 상</div><div class="info-val">총 <b>40명</b></div></div>
+      <div class="info-row"><div class="info-label">특 전</div><div class="info-val">참석자 40명 대상 <b>샌드위치 제공 🥪</b></div></div>
       <div class="seats" id="seats">
         <span class="lbl">현재 잔여석</span>
         <span class="big" id="seatNum">···</span>
-        <span class="lbl">/ 선착순 30명</span>
+        <span class="lbl">/ 총 40석</span>
       </div>
     </section>
 
@@ -293,7 +293,7 @@
     if(st.remaining <= 0){ el.classList.add('full'); num.textContent='마감'; num.style.fontSize='28px'; }
   }
   function loadStatus(){
-    if(!CONFIGURED){ paintSeats({remaining:30}); return; }
+    if(!CONFIGURED){ paintSeats({remaining:40}); return; }
     fetch(API_URL + '?action=status').then(function(r){return r.json();}).then(paintSeats).catch(function(){paintSeats(null);});
   }
 
@@ -327,7 +327,7 @@
     var btn=document.getElementById('submitBtn');
     btn.disabled=true; btn.textContent='저장 중...';
 
-    if(!CONFIGURED){ setTimeout(function(){ onResult({ok:true,status:{remaining:30}}, data); }, 600); return; }
+    if(!CONFIGURED){ setTimeout(function(){ onResult({ok:true,status:{remaining:40}}, data); }, 600); return; }
 
     fetch(API_URL, { method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body:JSON.stringify(data) })
       .then(function(r){return r.json();})
