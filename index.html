@@ -246,8 +246,20 @@
         </select>
       </div>
 
-      <label class="fld"><span class="name">남기실 말씀</span>
-        <textarea id="memo" placeholder="궁금한 점이나 전하고 싶은 이야기를 자유롭게 적어주세요 :)"></textarea></label>
+      <div class="fld"><span class="name">질문할 작가 <span class="opt">(선택)</span></span>
+        <select id="qTarget">
+          <option value="전체 작가">전체 작가에게</option>
+          <option value="김남일 작가">김남일 작가 · 갈등 관리</option>
+          <option value="김소영 작가">김소영 작가 · 커리어</option>
+          <option value="임현준 작가">임현준 작가 · 지역사회</option>
+          <option value="최미정 작가">최미정 작가 · 기획(D.R.I.V.E.)</option>
+          <option value="고석우 작가">고석우 작가 · 스마트 워크</option>
+          <option value="김민재 작가">김민재 작가 · 현장 연구</option>
+        </select>
+      </div>
+
+      <label class="fld"><span class="name">묻고 싶은 질문 <span class="opt">(선택)</span></span>
+        <textarea id="qText" placeholder="북콘서트에서 작가에게 묻고 싶은 질문을 자유롭게 남겨주세요 :)"></textarea></label>
 
       <button class="submit" id="submitBtn" onclick="submit()">신청하기</button>
       <div class="note">신청해주신 정보는 행사 운영 목적으로만 사용됩니다.</div>
@@ -271,7 +283,7 @@
      ↓↓↓ 여기 한 줄만 본인 앱스 스크립트 웹앱 URL로 바꿔주세요 ↓↓↓
      예: 'https://script.google.com/macros/s/AKfycb..../exec'
      ============================================================ */
-  var API_URL = 'https://script.google.com/macros/s/AKfycbwWJGq_gqu5rJwmnCs7PdpoYV9ZXPPX6PtQsYsDrYmsnojn59rCPeUmZogc5LUrd_THCA/exec';
+  var API_URL = 'PASTE_YOUR_APPS_SCRIPT_EXEC_URL_HERE';
   var CONFIGURED = API_URL.indexOf('script.google.com') !== -1;
 
   function paintSeats(st){
@@ -300,7 +312,8 @@
     var phone=document.getElementById('phone').value.trim();
     var org=document.getElementById('org').value.trim();
     var attend='참석';
-    var memo=document.getElementById('memo').value.trim();
+    var qTarget=document.getElementById('qTarget').value;
+    var qText=document.getElementById('qText').value.trim();
     var buyBook=document.getElementById('buyBook').value;
 
     document.getElementById('errName').textContent='';
@@ -310,7 +323,7 @@
     if(phone.replace(/[^0-9]/g,'').length<10){ document.getElementById('errPhone').textContent='연락처를 정확히 입력해주세요'; bad=true; }
     if(bad) return;
 
-    var data={ name:name, phone:phone, org:org, attend:attend, companions:cnt, buyBook:buyBook, memo:memo };
+    var data={ name:name, phone:phone, org:org, attend:attend, companions:cnt, buyBook:buyBook, qTarget:qTarget, qText:qText };
     var btn=document.getElementById('submitBtn');
     btn.disabled=true; btn.textContent='저장 중...';
 
@@ -335,7 +348,8 @@
     var recap='<div><b>성함</b> · '+esc(data.name)+'</div>'
             + '<div><b>연락처</b> · '+esc(data.phone)+'</div>'
             + (data.org? '<div><b>소속</b> · '+esc(data.org)+'</div>':'')
-            + '<div><b>동반인원</b> · '+data.companions+'명 (본인 포함)</div>';
+            + '<div><b>동반인원</b> · '+data.companions+'명 (본인 포함)</div>'
+            + (data.qText? '<div><b>질문</b> · ['+esc(data.qTarget)+'] '+esc(data.qText)+'</div>':'');
     document.getElementById('recap').innerHTML=recap;
     if(res.status) paintSeats(res.status);
     window.scrollTo({top:0,behavior:'smooth'});
