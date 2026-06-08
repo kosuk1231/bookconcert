@@ -277,10 +277,12 @@
      ============================================================ */
   var API_URL = 'https://script.google.com/macros/s/AKfycbwWJGq_gqu5rJwmnCs7PdpoYV9ZXPPX6PtQsYsDrYmsnojn59rCPeUmZogc5LUrd_THCA/exec';
   var CONFIGURED = API_URL.indexOf('script.google.com') !== -1;
+  var lastRemaining = null;
 
   function paintSeats(st){
     var el=document.getElementById('seats'), num=document.getElementById('seatNum');
     if(!st){ num.textContent='—'; return; }
+    lastRemaining = st.remaining;
     num.textContent = st.remaining;
     if(st.remaining <= 0){ el.classList.add('full'); num.textContent='마감'; num.style.fontSize='28px'; }
   }
@@ -317,14 +319,38 @@
 
     var data={ name:name, phone:phone, org:org, attend:attend, companions:cnt, buyBook:buyBook, qTarget:qTarget, qText:qText };
     var btn=document.getElementById('submitBtn');
-    btn.disabled=true; btn.textContent='저장 중...';
 
+    // 사전 좌석 체크(폴백 저장 시 초과 신청 방지)
+    if(lastRemaining !== null && cnt > lastRemaining){
+      alert(lastRemaining <= 0 ? '죄송합니다. 정원이 마감되었습니다.'
+        : '남은 좌석('+lastRemaining+'석)보다 신청 인원이 많습니다.');
+      return;
+    }
+
+    btn.disabled=true; btn.textContent='저장 중...';
     if(!CONFIGURED){ setTimeout(function(){ onResult({ok:true,status:{remaining:40}}, data); }, 600); return; }
 
+    saveWithFallback(data, btn);
+  }
+
+  // 1차: 정상 요청(응답 읽기 → 마감/오류 정확히 처리). 실패 시 2차 폴백.
+  function saveWithFallback(data, btn){
     fetch(API_URL, { method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body:JSON.stringify(data) })
-      .then(function(r){return r.json();})
-      .then(function(res){ onResult(res, data); })
-      .catch(function(){ btn.disabled=false; btn.textContent='신청하기'; alert('저장 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.'); });
+      .then(function(r){ return r.text(); })
+      .then(function(text){
+        var res=null; try { res=JSON.parse(text); } catch(e){}
+        if(res){ onResult(res, data); }      // 서버 JSON 응답 정상
+        else { fallbackSave(data, btn); }    // 로그인/HTML 등 → 폴백
+      })
+      .catch(function(){ fallbackSave(data, btn); }); // 네트워크/CORS 차단 → 폴백
+  }
+
+  // 2차: no-cors 전송. 응답은 못 읽지만 시트 저장은 진행됨.
+  function fallbackSave(data, btn){
+    fetch(API_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain;charset=utf-8'}, body:JSON.stringify(data) })
+      .then(function(){ onResult({ok:true}, data); setTimeout(loadStatus, 1200); })
+      .catch(function(){ btn.disabled=false; btn.textContent='신청하기';
+        alert('저장에 실패했습니다. 인터넷 연결을 확인하거나 잠시 후 다시 시도해주세요.'); });
   }
 
   function onResult(res, data){
