@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>북콘서트 참석 신청 | 샌드위치 사회복지사 생존기술</title>
-<meta property="og:title" content="샌드위치 사회복지사 생존기술 — 북콘서트 참석 신청">
-<meta property="og:description" content="2026.7.11(토) 오전 11시 · 서울특별시사회복지사협회 304호 다락실 · 총 40석">
+<title>북콘서트 서울편 참석 신청 | 샌드위치 사회복지사 생존기술</title>
+<meta property="og:title" content="《샌드위치 사회복지사 생존기술》 북콘서트 ‘서울편’">
+<meta property="og:description" content="2026.7.11(토) 11:00~13:00 · 서울특별시사회복지사협회 304호 다락실 · 저자 6명의 숏강의 & 사인회">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Jua&family=Gaegu:wght@400;700&family=Gowun+Dodum&family=Noto+Sans+KR:wght@500;700;900&display=swap" rel="stylesheet">
@@ -25,15 +25,19 @@
 
   /* ===== 헤더 ===== */
   header{text-align:center;padding:40px 0 6px;}
-  .kicker{font-family:'Gaegu',cursive;font-weight:700;color:var(--coral-deep);font-size:17px;margin-bottom:8px;}
-  h1.title{font-family:'Noto Sans KR',sans-serif;font-weight:900;color:var(--green);font-size:clamp(36px,11vw,54px);line-height:1.12;letter-spacing:-1.8px;}
+  .kicker{font-family:'Gaegu',cursive;font-weight:700;color:var(--coral-deep);font-size:18px;margin-bottom:8px;}
+  h1.title{font-family:'Noto Sans KR',sans-serif;font-weight:900;color:var(--green);font-size:clamp(40px,12vw,58px);line-height:1.1;letter-spacing:-1.8px;}
   .title .sub{color:var(--coral-deep);}
-  .speech{display:inline-block;margin-top:18px;font-family:'Gaegu',cursive;font-weight:700;font-size:25px;color:var(--green-2);line-height:1.4;}
+  .tagline{display:inline-block;margin-top:16px;background:var(--green);color:#fff;font-family:'Jua',sans-serif;
+    font-size:15.5px;padding:8px 16px;border-radius:30px;letter-spacing:-.2px;box-shadow:0 4px 12px rgba(62,92,68,.22);}
+  .tagline b{color:var(--yellow-soft);}
+  .tagline .star{color:var(--yellow);margin:0 6px;}
+  .speech{display:inline-block;margin-top:16px;font-family:'Gaegu',cursive;font-weight:700;font-size:25px;color:var(--green-2);line-height:1.4;}
   .speech b{color:var(--coral-deep);border-bottom:4px solid var(--yellow);padding-bottom:1px;}
 
   /* ===== 책 표지 (CSS 재현) ===== */
   /* 실제 표지 이미지를 쓰려면 아래 .book 내부를 <img src="cover.png" class="book-img"> 로 교체하세요. */
-  .book{display:inline-block;margin:66px auto 60px;animation:float 5.5s ease-in-out infinite;}
+  .book{display:inline-block;margin:60px auto 56px;animation:float 5.5s ease-in-out infinite;}
   @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
   .book-cover{width:246px;padding:16px 15px 14px;text-align:left;position:relative;
     background:linear-gradient(157deg,#4A6B52 0%,#37503D 100%);
@@ -82,26 +86,11 @@
   .chip-tag.coral{background:var(--coral-deep);}
   .chip-tag.line{background:transparent;color:var(--green);border:1.5px solid var(--green-soft);}
 
-  /* ===== 작가 소개 ===== */
-  .author{display:flex;gap:13px;padding:15px 0;border-bottom:1px dashed var(--line);}
-  .author:last-child{border-bottom:none;padding-bottom:2px;}
-  .ava{flex:0 0 52px;width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-    font-family:'Jua',sans-serif;font-size:22px;color:#fff;box-shadow:0 3px 7px rgba(0,0,0,.12);}
-  .a-body{flex:1;}
-  .a-top{display:flex;align-items:baseline;gap:7px;flex-wrap:wrap;}
-  .a-name{font-family:'Jua',sans-serif;font-size:18px;color:var(--green);}
-  .a-role{font-size:12px;color:var(--coral-deep);font-weight:bold;}
-  .a-desc{font-size:14px;color:var(--ink);margin-top:2px;}
-  .a-org{font-size:12.5px;color:var(--muted);margin-top:3px;}
-  .a-chap{display:inline-block;margin-top:7px;font-size:12.5px;color:var(--green-2);
-    background:var(--cream);border:1px dashed var(--green-soft);border-radius:8px;padding:3px 9px;}
-  .a-chap b{color:var(--coral-deep);}
-
   /* ===== 행사 정보 ===== */
   .info-row{display:flex;gap:12px;padding:9px 0;border-bottom:1px dashed var(--line);}
   .info-row:last-child{border-bottom:none;}
-  .info-label{flex:0 0 70px;background:var(--green);color:#fff;font-family:'Jua',sans-serif;font-size:14px;
-    border-radius:8px;text-align:center;padding:5px 0;height:fit-content;letter-spacing:2px;}
+  .info-label{flex:0 0 84px;background:var(--green);color:#fff;font-family:'Jua',sans-serif;font-size:13.5px;
+    border-radius:8px;text-align:center;padding:5px 4px;height:fit-content;}
   .info-val{flex:1;font-size:15.5px;padding-top:3px;}
   .info-val b{color:var(--coral-deep);}
   .seats{margin-top:16px;text-align:center;background:linear-gradient(135deg,var(--coral) 0%,var(--coral-deep) 100%);
@@ -144,7 +133,7 @@
   .done .recap b{color:var(--green);font-family:'Jua',sans-serif;}
 
   .ribbon{margin:30px auto 0;max-width:560px;text-align:center;background:var(--green);color:#fff;border-radius:14px;
-    padding:18px 20px;font-family:'Jua',sans-serif;font-size:17px;line-height:1.5;}
+    padding:18px 20px;font-family:'Jua',sans-serif;font-size:17px;line-height:1.55;}
   .ribbon b{color:var(--yellow-soft);}
 </style>
 </head>
@@ -156,8 +145,9 @@
 
   <div class="wrap">
     <header>
-      <div class="kicker">중간관리자 6인의 실무 이야기를 직접 듣는 시간</div>
-      <h1 class="title">샌드위치<br>사회복지사 생존기술<br><span class="sub">북콘서트</span></h1>
+      <div class="kicker">《샌드위치 사회복지사 생존기술》의</div>
+      <h1 class="title">북콘서트<br><span class="sub">‘서울편’</span></h1>
+      <div class="tagline"><span class="star">✦</span>저자 6명의 생생한 <b>숏강의</b> &amp; <b>사인회</b><span class="star">✦</span></div>
       <div class="speech">읽고, 듣고, 만나고, <b>함께 이야기해요!</b></div>
 
       <div class="book">
@@ -205,11 +195,14 @@
     <!-- 행사 안내 -->
     <section class="card">
       <div class="sec-head"><span class="en">Event</span><span class="bubble">···</span></div>
-      <div class="sec-ko">북콘서트 안내</div>
-      <div class="info-row"><div class="info-label">일 시</div><div class="info-val"><b>2026년 7월 11일(토)</b> 오전 11시</div></div>
-      <div class="info-row"><div class="info-label">장 소</div><div class="info-val">서울특별시사회복지사협회 304호 다락실</div></div>
-      <div class="info-row"><div class="info-label">대 상</div><div class="info-val">총 <b>40명</b></div></div>
-      <div class="info-row"><div class="info-label">특 전</div><div class="info-val">사전 신청자 대상 <b>샌드위치 제공 🥪</b></div></div>
+      <div class="sec-ko">북콘서트 ‘서울편’ 안내</div>
+      <div class="info-row"><div class="info-label">일시</div><div class="info-val"><b>2026년 7월 11일(토)</b> 11:00~13:00</div></div>
+      <div class="info-row"><div class="info-label">장소</div><div class="info-val">서울특별시사회복지사협회 304호 다락실</div></div>
+      <div class="info-row"><div class="info-label">안내</div><div class="info-val">현장 책구매 가능</div></div>
+      <div class="info-row"><div class="info-label">특전</div><div class="info-val">사전신청자 대상 <b>샌드위치 제공 🥪</b></div></div>
+      <div class="info-row"><div class="info-label">프로그램</div><div class="info-val">책에 담지 못한 저자 6인의 생생한 <b>숏강의</b> 및 <b>저자 사인회</b></div></div>
+      <div class="info-row"><div class="info-label">참가비</div><div class="info-val"><b>무료</b></div></div>
+      <div class="info-row"><div class="info-label">현장이벤트</div><div class="info-val">있음 🎉</div></div>
       <div class="seats" id="seats">
         <span class="lbl">현재 잔여석</span>
         <span class="big" id="seatNum">···</span>
@@ -269,13 +262,13 @@
       <div class="done">
         <div class="emoji">🥪</div>
         <h2>신청 완료!</h2>
-        <p>북콘서트에서 만나뵙기를 기다리겠습니다.</p>
+        <p>북콘서트 ‘서울편’에서 만나뵙기를 기다리겠습니다.</p>
         <div class="recap" id="recap"></div>
       </div>
     </section>
   </div>
 
-  <div class="ribbon">사회복지 현장의 이야기를<br>함께 나누는 <b>북콘서트</b>에 초대합니다!</div>
+  <div class="ribbon">책도 선물도 샌드위치도, 함께 즐기는 특별한 시간!<br>오늘도 고군분투하는 <b>여러분을 초대합니다</b> 🥪</div>
 
 <script>
   /* ============================================================
