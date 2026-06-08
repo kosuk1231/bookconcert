@@ -375,6 +375,10 @@
   function esc(s){ return String(s).replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c];}); }
 
   loadStatus();
+  // 15초마다 잔여석 자동 갱신 (신청 완료 화면에서는 중단)
+  setInterval(function(){
+    if(document.getElementById('doneCard').classList.contains('hide')){ loadStatus(); }
+  }, 15000);
 </script>
 </body>
 </html>
