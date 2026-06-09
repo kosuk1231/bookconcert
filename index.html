@@ -230,14 +230,6 @@
         </div>
       </div>
 
-      <div class="fld"><span class="name">현장에서 책을 구매하실 건가요?</span>
-        <select id="buyBook">
-          <option value="구매 예정">네, 구매할게요</option>
-          <option value="이미 구매">이미 구매했어요</option>
-          <option value="미정">아직 미정이에요</option>
-        </select>
-      </div>
-
       <div class="fld"><span class="name">질문할 작가 <span class="opt">(선택)</span></span>
         <select id="qTarget">
           <option value="전체 작가">전체 작가에게</option>
@@ -308,7 +300,6 @@
     var attend='참석';
     var qTarget=document.getElementById('qTarget').value;
     var qText=document.getElementById('qText').value.trim();
-    var buyBook=document.getElementById('buyBook').value;
 
     document.getElementById('errName').textContent='';
     document.getElementById('errPhone').textContent='';
@@ -317,7 +308,7 @@
     if(phone.replace(/[^0-9]/g,'').length<10){ document.getElementById('errPhone').textContent='연락처를 정확히 입력해주세요'; bad=true; }
     if(bad) return;
 
-    var data={ name:name, phone:phone, org:org, attend:attend, companions:cnt, buyBook:buyBook, qTarget:qTarget, qText:qText };
+    var data={ name:name, phone:phone, org:org, attend:attend, companions:cnt, qTarget:qTarget, qText:qText };
     var btn=document.getElementById('submitBtn');
 
     // 사전 좌석 체크(폴백 저장 시 초과 신청 방지)
